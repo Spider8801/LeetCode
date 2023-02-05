@@ -19,22 +19,33 @@ using namespace std;
 //    cout<<n<<endl;
 //}
 
-int SumN(int n,int *sum){
+//int SumN(int n,int *sum){
+//
+//    int sum_val=*sum;
+//    //sum_val+=n;
+//    if(n== 1)
+//        return 1;
+//    sum_val= SumN(n-1,&sum_val);
+//    cout<<sum_val<<" ";
+//    return sum_val+n;
+//}
 
-    int sum_val=*sum;
-    cout<<sum_val<<" ";
-    sum_val+=n;
-    if(n< 1)
+int FactN(int n, int *fact){
+    int fact_val=*fact;
+    if(n==1){
         return 1;
-    SumN(n-1,&sum_val);
-    return sum_val+n;
+    }
+    fact_val= FactN(n-1,&fact_val);
+    return fact_val*n;
 }
 
 int main() {
 //    Print9(9);
 //    Print19(9);
-    int sum=0;
-    int result= SumN(6, &sum);
-    cout<<result;
+    //int sum=0;
+    //int result= SumN(6, &sum);
+    int fact=1;
+    int result= FactN(3,&fact);
+    cout<<"This is the result: "<<result;
     return 0;
 }
