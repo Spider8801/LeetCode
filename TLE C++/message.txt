@@ -1,0 +1,90 @@
+<@&1089201198852214898> 
+```cpp
+// int level;
+
+// void dfs(int node, int par, vector<int> adj[], int lev){
+//     //here you just entered the node
+//     cout << node << " ";
+//     level = max(level, lev);
+//     for(auto it : adj[node]){
+//         if(it == par) continue; //to prevent inf loop
+//         dfs(it, node, adj, lev + 1); //dfs for subtree of it
+//     }
+//     //you are about to leave the node
+// }
+
+// int dfs(int node, int par, vector<int> adj[]){
+//     int h = 0;
+//     for(auto it : adj[node]){
+//         if(it == par) continue;
+//         h = max(h, 1 + dfs(it, node, adj));
+//     }
+//     return h;
+// }
+
+// vector<int> path;
+
+// bool dfs(int node, int par, vector<int> adj[], int x){
+//     path.pb(node);
+//     if(x == node){
+//         return true;
+//     }
+//     for(auto it : adj[node]){
+//         if(it == par) continue;
+//         if(dfs(it, node, adj, x) == true){
+//             return true;
+//         }
+//     }
+//     path.ppb();
+//     return false;
+// }
+
+int dfs(int node, int par, vector<int> adj[], vector<int> &dp){
+    if(dp[node] != -1){
+        return dp[node];
+    }
+    int subo = 0;
+    for(auto it : adj[node]){
+        if(it == par) continue;
+        subo += dfs(it, node, adj, dp) + 1;
+    }
+    return dp[node] = subo;
+}
+
+void solve(){
+    int n;
+    cin >> n;
+    // int level = -1;
+    vector<int> adj[n+1]; //one based indexing
+    for(int i = 2; i <= n; i++){
+        int u, v = i;
+        cin >> u;
+        //edge between u & v
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
+    vector<int> dp(n+1, -1);
+    for(int i = 1; i <= n; i++){
+        cout << dfs(i, 0, adj, dp) << " ";
+    }
+    // queue<pair<int, int>> q;
+    // //{node, par}
+    // q.push({1, 0});
+    // while(q.empty() == false){
+    //     int k = q.size();
+    //     level++;
+    //     for(int i = 0; i < k; i++){
+    //         int node = q.front().first;
+    //         int par = q.front().second;
+    //         q.pop();
+    //         cout << node << " ";
+    //         //here we can print the node
+    //         for(auto it : adj[node]){
+    //             if(it == par) continue;
+    //             q.push({it, node});
+    //         }
+    //     }
+    //     cout << endl;
+    // }
+    // cout << level << endl;
+}```
