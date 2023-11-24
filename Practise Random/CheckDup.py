@@ -1,9 +1,7 @@
 class Solution:
     def contains_duplicate(self, nums) -> bool:
         for i in range(len(nums)):
-            print("i",i)
             for j in range(i+1,len(nums)):
-                print("j",j)
                 if nums[i]==nums[j]:
                     return True
         return False
