@@ -3,7 +3,7 @@
 #include<ctype.h>
 
 using namespace std;
-
+//Pangram checks for all characters' presence
 class Solution{
 
     public:
